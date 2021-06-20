@@ -100,6 +100,20 @@ public class MainActivity extends AppCompatActivity implements ItemAdapter.OnIte
         dialog.show();
     }
 
+    @Override
+    public void onBackPressed() {
+        new android.app.AlertDialog.Builder(this)
+                .setTitle("Exit?")
+                .setMessage("Are you sure you want to exit?")
+                .setNegativeButton(android.R.string.cancel, null)
+                .setPositiveButton(android.R.string.ok, (arg0, arg1) -> {
+                    customToast("Application closed!");
+                    finish();
+                })
+                .create()
+                .show();
+    }
+
     private void loadItems() {
         itemModelList.clear();
         Cursor cursor = databaseHelper.readItems();
